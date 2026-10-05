@@ -1,0 +1,952 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Young Street Garage</title>
+<meta name="description" content="Young Street Garage — Ottawa's European import car specialist since 1976. BMW, Audi, VW, Mini, Volvo, Mercedes.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f6f5f2; --surface:#ffffff; --surface-2:#eceae5; --ink:#15171a; --muted:#5b6068;
+  --line:#dcd9d2; --accent:#c8102e; --accent-ink:#ffffff; --accent-soft:#c8102e14;
+  --dark:#111316; --dark-2:#1b1e22; --dark-ink:#f3f2ee; --dark-muted:#a3a8b0;
+  --radius:14px; --shadow:0 10px 30px -12px rgba(0,0,0,.18);
+  --head:"Barlow Condensed",system-ui,sans-serif; --body:"Inter",system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0e1013; --surface:#16191d; --surface-2:#1d2126; --ink:#eeede9; --muted:#a0a6ae;
+    --line:#2a2f35; --accent:#e5283f; --accent-soft:#e5283f1f; --shadow:0 10px 30px -12px rgba(0,0,0,.6);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0e1013; --surface:#16191d; --surface-2:#1d2126; --ink:#eeede9; --muted:#a0a6ae;
+  --line:#2a2f35; --accent:#e5283f; --accent-soft:#e5283f1f; --shadow:0 10px 30px -12px rgba(0,0,0,.6);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{background:var(--bg);color:var(--ink);font:16px/1.6 var(--body);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit}
+img,svg{display:block}
+.wrap{max-width:1180px;margin:0 auto;padding:0 16px}
+@media(min-width:720px){.wrap{padding:0 32px}}
+h1,h2,h3{font-family:var(--head);line-height:1.02;letter-spacing:.01em;text-transform:uppercase}
+h2{font-size:clamp(2rem,4.5vw,3.2rem);font-weight:800}
+h3{font-size:1.35rem;font-weight:700}
+.eyebrow{font:600 .78rem/1 var(--body);letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.eyebrow::before{content:"";width:28px;height:2px;background:var(--accent)}
+.lead{color:var(--muted);font-size:1.08rem;max-width:62ch}
+section{padding:88px 0}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:6px}
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font:600 .95rem/1 var(--body);padding:15px 22px;border-radius:999px;text-decoration:none;border:2px solid transparent;cursor:pointer;transition:transform .15s,background .2s,border-color .2s}
+.btn:hover{transform:translateY(-1px)}
+.btn-primary{background:var(--accent);color:var(--accent-ink)}
+.btn-primary:hover{background:#a50d26}
+.btn-ghost{border-color:currentColor;background:transparent}
+.btn svg{width:18px;height:18px}
+
+/* Header */
+header{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--dark) 92%,transparent);backdrop-filter:blur(10px);color:var(--dark-ink);border-bottom:1px solid #ffffff12}
+.nav{display:flex;align-items:center;gap:20px;height:70px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;font-family:var(--head);font-weight:800;font-size:1.3rem;letter-spacing:.04em;text-transform:uppercase;white-space:nowrap}
+.logo-mark{width:38px;height:38px;border-radius:10px;background:var(--accent);display:grid;place-items:center;font-size:1.05rem;color:#fff}
+.logo small{display:block;font:500 .62rem/1 var(--body);letter-spacing:.2em;color:var(--dark-muted);margin-top:3px}
+.menu{display:none;gap:26px;margin-left:auto;list-style:none}
+.menu a{text-decoration:none;font-size:.9rem;font-weight:500;color:var(--dark-muted);transition:color .2s}
+.menu a:hover{color:#fff}
+.nav-right{display:flex;align-items:center;gap:12px;margin-left:auto}
+@media(min-width:1000px){.menu{display:flex}.nav-right{margin-left:20px}}
+.lang{display:flex;background:#ffffff14;border-radius:999px;padding:3px}
+.lang button{all:unset;cursor:pointer;font:700 .75rem/1 var(--body);letter-spacing:.08em;padding:8px 11px;border-radius:999px;color:var(--dark-muted)}
+.lang button[aria-pressed="true"]{background:#fff;color:var(--dark)}
+.lang button:focus-visible{outline:2px solid var(--accent)}
+.nav .btn{padding:11px 16px;font-size:.85rem;display:none}
+@media(min-width:620px){.nav .btn{display:inline-flex}}
+.burger{all:unset;cursor:pointer;width:40px;height:40px;display:grid;place-items:center;border-radius:10px;background:#ffffff14}
+@media(min-width:1000px){.burger{display:none}}
+.mobile-menu{display:none;border-top:1px solid #ffffff12;padding:10px 0 18px}
+.mobile-menu.open{display:block}
+.mobile-menu a{display:block;padding:12px 0;text-decoration:none;font-weight:500;color:var(--dark-ink);border-bottom:1px solid #ffffff0d}
+@media(min-width:1000px){.mobile-menu{display:none!important}}
+
+/* Hero */
+.hero{background:var(--dark);color:var(--dark-ink);position:relative;overflow:hidden;padding:80px 0 0}
+.hero::before{content:"";position:absolute;inset:0;background:
+  radial-gradient(60% 70% at 85% 20%,#c8102e33,transparent 70%),
+  repeating-linear-gradient(115deg,#ffffff05 0 2px,transparent 2px 22px);pointer-events:none}
+.hero-grid{position:relative;display:grid;gap:40px;align-items:center}
+@media(min-width:960px){.hero-grid{grid-template-columns:1.15fr .85fr}}
+.hero h1{font-size:clamp(2.8rem,8vw,5.6rem);font-weight:800}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.hero .tag{font-family:var(--head);font-size:clamp(1.15rem,2.4vw,1.5rem);font-weight:500;letter-spacing:.04em;color:var(--dark-muted);margin:18px 0 30px;text-transform:uppercase}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:12px}
+.hero-ctas .btn-ghost{color:#fff}
+.status{display:inline-flex;align-items:center;gap:8px;font-size:.85rem;font-weight:600;padding:7px 12px;border-radius:999px;background:#ffffff10;margin-bottom:22px}
+.status .dot{width:8px;height:8px;border-radius:50%;background:#7a7f86}
+.status.open .dot{background:#2fd06b;box-shadow:0 0 0 4px #2fd06b33}
+.hero-card{background:var(--dark-2);border:1px solid #ffffff14;border-radius:20px;padding:28px;box-shadow:0 30px 60px -20px #000}
+.hero-card h3{font-size:1.1rem;color:var(--dark-muted);letter-spacing:.12em;margin-bottom:18px}
+.stat{display:flex;align-items:baseline;gap:14px;padding:16px 0;border-top:1px solid #ffffff10}
+.stat:first-of-type{border-top:0}
+.stat b{font:800 2.4rem/1 var(--head);color:#fff;min-width:110px}
+.stat span{color:var(--dark-muted);font-size:.93rem}
+.stars{color:#f5b301;letter-spacing:2px}
+.brands{position:relative;margin-top:64px;border-top:1px solid #ffffff12;padding:26px 0}
+.brands-row{display:flex;flex-wrap:wrap;justify-content:space-between;gap:14px 28px;align-items:center}
+.brands-row p{font-size:.75rem;letter-spacing:.18em;text-transform:uppercase;color:var(--dark-muted);font-weight:600}
+.brands-row span{font:700 1.35rem/1 var(--head);letter-spacing:.14em;text-transform:uppercase;color:#d9d7d2;opacity:.85}
+.brand{display:inline-flex;align-items:center;gap:10px;transition:opacity .2s,color .2s}
+.brand svg{width:28px;height:28px;flex:none}
+.brand:hover{opacity:1;color:#fff}
+
+/* Services */
+.section-head{display:grid;gap:18px;margin-bottom:48px}
+@media(min-width:900px){.section-head{grid-template-columns:1fr 1fr;align-items:end}}
+.grid-3{display:grid;gap:16px;grid-template-columns:1fr}
+@media(min-width:640px){.grid-3{grid-template-columns:1fr 1fr}}
+@media(min-width:980px){.grid-3{grid-template-columns:repeat(3,1fr)}}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:26px;transition:transform .2s,box-shadow .2s,border-color .2s;position:relative}
+.card:hover{transform:translateY(-3px);box-shadow:var(--shadow);border-color:var(--accent)}
+.icon{width:48px;height:48px;border-radius:12px;background:var(--accent-soft);color:var(--accent);display:grid;place-items:center;margin-bottom:18px}
+.icon svg{width:24px;height:24px}
+.card p{color:var(--muted);font-size:.95rem;margin-top:8px}
+
+/* Why */
+.why{background:var(--surface-2)}
+.why-grid{display:grid;gap:40px}
+@media(min-width:960px){.why-grid{grid-template-columns:.9fr 1.1fr;align-items:start}}
+.warranty{background:var(--dark);color:var(--dark-ink);border-radius:20px;padding:34px;margin-top:30px;position:relative;overflow:hidden}
+.warranty::after{content:"";position:absolute;right:-40px;bottom:-40px;width:180px;height:180px;border-radius:50%;border:18px solid #c8102e44}
+.warranty b{font:800 3.4rem/1 var(--head);display:block;color:#fff}
+.warranty p{color:var(--dark-muted);margin-top:8px;max-width:30ch}
+.feat{display:grid;gap:14px}
+.feat-item{display:flex;gap:16px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:20px}
+.feat-item .icon{margin:0;flex:none}
+.feat-item p{color:var(--muted);font-size:.94rem;margin-top:4px}
+
+/* Balancing */
+.balance{background:var(--dark);color:var(--dark-ink);overflow:hidden}
+.balance .lead{color:var(--dark-muted)}
+.balance-grid{display:grid;gap:44px;align-items:center}
+@media(min-width:960px){.balance-grid{grid-template-columns:1fr 1fr}}
+.checks{list-style:none;margin-top:26px;display:grid;gap:12px}
+.checks li{display:flex;gap:12px;align-items:flex-start}
+.checks svg{width:22px;height:22px;color:var(--accent);flex:none;margin-top:2px}
+.wheel{max-width:400px;margin:0 auto;width:100%}
+.wheel svg{width:100%;height:auto}
+/* Simulator */
+.sim{margin-top:72px;background:var(--dark-2);border:1px solid #ffffff14;border-radius:24px;padding:clamp(20px,4vw,40px)}
+.sim-head{max-width:680px;margin-bottom:28px}
+.sim-head h3{font-size:clamp(1.6rem,3.4vw,2.4rem);margin-bottom:10px}
+.sim-head p{color:var(--dark-muted)}
+.sim-grid{display:grid;gap:28px}
+@media(min-width:960px){.sim-grid{grid-template-columns:1.05fr .95fr;align-items:start}}
+.sim-stage{display:grid;grid-template-columns:.8fr 1.2fr;gap:14px;background:#0f1114;border-radius:18px;padding:18px;border:1px solid #ffffff0d}
+.sim-scene{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;min-width:0}
+.sim-steer{width:100%;max-width:150px}
+.sim-wheelsvg{width:100%;max-width:240px;overflow:visible}
+.sim-tread{grid-column:1/-1}
+.sim-tread svg{width:100%;height:64px;display:block;border-radius:6px;background:#15181c}
+.sim-label{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--dark-muted);font-weight:600;text-align:center}
+.sim-controls{display:grid;gap:20px}
+.sim-row{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.sim-row label,.sim-row span{font-weight:600;font-size:.92rem}
+.sim-row output,.sim-row strong{font:700 1.3rem/1 var(--head);letter-spacing:.04em;color:#fff}
+.sim input[type=range]{width:100%;margin-top:10px;accent-color:var(--accent);background:transparent;border:0;padding:0;height:28px;cursor:pointer}
+.sim-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.sim-stats div{background:#ffffff08;border:1px solid #ffffff10;border-radius:12px;padding:14px 12px;min-width:0}
+.sim-stats b{display:block;font:800 clamp(1.3rem,2.6vw,1.8rem)/1 var(--head);color:#fff;white-space:nowrap}
+.sim-stats span{display:block;font-size:.74rem;line-height:1.3;color:var(--dark-muted);margin-top:6px}
+.sim-bar{height:10px;border-radius:99px;background:#ffffff12;overflow:hidden;margin-top:10px}
+.sim-bar i{display:block;height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,#2fd06b,#f5b301 50%,#e5283f);background-size:var(--bw,100%) 100%;transition:width .35s}
+.sim-effects{list-style:none;display:grid;gap:8px}
+.sim-effects li{display:flex;gap:10px;align-items:flex-start;font-size:.9rem;color:#ffffff4d;transition:color .3s}
+.sim-effects li::before{content:"";width:10px;height:10px;border-radius:50%;background:#ffffff26;margin-top:6px;flex:none;transition:background .3s,box-shadow .3s}
+.sim-effects li.on{color:var(--dark-ink)}
+.sim-effects li.on::before{background:var(--accent);box-shadow:0 0 0 4px #e5283f33}
+.sim-effects li.ok{color:var(--dark-ink)}
+.sim-effects li.ok::before{background:#2fd06b;box-shadow:0 0 0 4px #2fd06b33}
+.sim-actions{display:flex;flex-wrap:wrap;gap:10px}
+.sim-actions .btn-ghost{color:#fff}
+.sim-note{margin-top:22px;font-size:.78rem;color:var(--dark-muted)}
+@media(max-width:520px){.sim-stats{grid-template-columns:1fr}.sim-stats div{display:flex;align-items:baseline;gap:12px}.sim-stats span{margin:0}}
+
+@media(prefers-reduced-motion:no-preference){.spin{animation:spin 9s linear infinite;transform-origin:200px 200px}@keyframes spin{to{transform:rotate(360deg)}}}
+
+/* About */
+.timeline{display:grid;gap:16px;margin-top:10px}
+@media(min-width:860px){.timeline{grid-template-columns:repeat(3,1fr)}}
+.tl{border-top:3px solid var(--accent);padding-top:20px;position:relative}
+.tl-photos{display:flex;margin:-58px 0 18px;height:116px}
+.tl-photo{width:116px;height:116px;border-radius:50%;overflow:hidden;flex:none;border:4px solid var(--bg);box-shadow:0 0 0 3px var(--accent),var(--shadow);background:var(--surface-2);margin:0;position:relative}
+.tl-photo + .tl-photo{margin-left:-22px}
+.tl-photo img{width:100%;height:100%;object-fit:cover;display:block}
+.tl-photo.vintage img{filter:sepia(.75) contrast(1.05) brightness(1.1)}
+.tl-names{display:flex;flex-wrap:wrap;gap:6px 14px;margin-top:10px;font-size:.82rem;font-weight:600;color:var(--muted)}
+.tl-names span::before{content:"● ";color:var(--accent)}
+.timeline{row-gap:90px;padding-top:58px}
+.tl-photos{position:relative}
+.tl-play{all:unset;cursor:pointer;position:absolute;left:84px;top:78px;width:38px;height:38px;border-radius:50%;background:var(--accent);color:#fff;display:grid;place-items:center;border:3px solid var(--bg);box-shadow:var(--shadow);transition:transform .2s}
+.tl-play:hover{transform:scale(1.1)}
+.tl-play:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.tl-play svg{width:14px;height:14px;margin-left:2px}
+
+/* Video */
+.video-wrap{margin-bottom:56px}
+.video{position:relative;aspect-ratio:16/9;border-radius:20px;overflow:hidden;background:var(--dark);box-shadow:var(--shadow)}
+.video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.video-btn{all:unset;cursor:pointer;position:absolute;inset:0;display:flex;align-items:flex-end;padding:clamp(18px,4vw,36px);color:#fff;
+  background:linear-gradient(0deg,#000c 0%,#0004 45%,transparent 70%),var(--thumb) center/cover no-repeat}
+.video-btn:focus-visible{outline:3px solid var(--accent);outline-offset:-6px;border-radius:20px}
+.video-btn .play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:clamp(64px,10vw,92px);height:clamp(64px,10vw,92px);border-radius:50%;background:var(--accent);display:grid;place-items:center;box-shadow:0 0 0 10px #c8102e40;transition:transform .2s,box-shadow .2s}
+.video-btn:hover .play{transform:translate(-50%,-50%) scale(1.08);box-shadow:0 0 0 16px #c8102e33}
+.video-btn .play svg{width:34%;height:34%;margin-left:6%}
+.video-btn .vt{display:block;font:800 clamp(1.3rem,3vw,2rem)/1.05 var(--head);text-transform:uppercase}
+.video-btn small{display:block;font:500 .85rem var(--body);color:#ffffffb3;margin-top:6px;letter-spacing:.04em}
+.video-link{display:inline-flex;gap:8px;margin-top:14px;font-size:.9rem;font-weight:600;color:var(--muted);text-decoration:none}
+.video-link:hover{color:var(--accent)}
+.tl b{font:800 2.6rem/1 var(--head);color:var(--accent)}
+.tl h3{margin:10px 0 6px}
+.tl p{color:var(--muted);font-size:.95rem}
+.about-grid{display:grid;gap:40px}
+@media(min-width:960px){.about-grid{grid-template-columns:1fr 1fr}}
+blockquote{font:600 clamp(1.5rem,3vw,2.1rem)/1.15 var(--head);text-transform:uppercase;border-left:4px solid var(--accent);padding-left:22px}
+
+/* Reviews */
+.reviews{background:var(--surface-2)}
+.review{display:flex;flex-direction:column;gap:14px}
+.review p{color:var(--ink);font-size:1rem;margin:0}
+.review small{color:var(--muted);font-size:.82rem}
+.rating-big{display:flex;align-items:center;gap:16px}
+.rating-big b{font:800 4rem/1 var(--head)}
+
+/* Booking */
+.booking-grid{display:grid;gap:40px}
+@media(min-width:960px){.booking-grid{grid-template-columns:.8fr 1.2fr}}
+form{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:28px;display:grid;gap:16px;grid-template-columns:1fr}
+@media(min-width:640px){form{grid-template-columns:1fr 1fr;padding:34px}}
+.field{display:grid;gap:7px}
+.field.full{grid-column:1/-1}
+label{font-size:.85rem;font-weight:600}
+input,select,textarea{font:inherit;color:var(--ink);background:var(--bg);border:1.5px solid var(--line);border-radius:10px;padding:13px 14px;width:100%;transition:border-color .2s}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--accent)}
+textarea{min-height:110px;resize:vertical}
+.err{color:var(--accent);font-size:.8rem;min-height:1em}
+.invalid{border-color:var(--accent)}
+.form-ok{grid-column:1/-1;display:none;background:#2fd06b1f;border:1px solid #2fd06b66;border-radius:12px;padding:16px;font-weight:500}
+.form-ok.show{display:block}
+.note{font-size:.82rem;color:var(--muted);grid-column:1/-1}
+.info-list{list-style:none;display:grid;gap:18px;margin-top:28px}
+.info-list li{display:flex;gap:14px}
+.info-list .icon{margin:0;flex:none;width:44px;height:44px}
+.info-list b{display:block;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.info-list a{text-decoration:none;font-weight:600}
+.info-list a:hover{color:var(--accent)}
+
+/* Map / contact */
+.map{background:var(--dark);color:var(--dark-ink);border-radius:20px;overflow:hidden;display:grid}
+@media(min-width:900px){.map{grid-template-columns:1fr 1fr}}
+.map-art{min-height:260px;background:
+  linear-gradient(0deg,#ffffff0a 1px,transparent 1px) 0 0/40px 40px,
+  linear-gradient(90deg,#ffffff0a 1px,transparent 1px) 0 0/40px 40px,#15181c;position:relative}
+.map-art .road{position:absolute;background:#2b3036}
+.pin{position:absolute;left:50%;top:50%;transform:translate(-50%,-100%);color:var(--accent)}
+.pin svg{width:46px;height:46px;filter:drop-shadow(0 6px 10px #000)}
+.map-body{padding:34px}
+.hours{width:100%;border-collapse:collapse;margin:18px 0 24px;font-size:.95rem}
+.hours td{padding:8px 0;border-bottom:1px solid #ffffff12}
+.hours td:last-child{text-align:right;color:var(--dark-muted)}
+.hours tr.today td{color:#fff;font-weight:700}
+
+footer{background:#0a0b0d;color:var(--dark-muted);padding:40px 0 100px;font-size:.88rem}
+@media(min-width:720px){footer{padding-bottom:40px}}
+.foot{display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;align-items:center}
+.foot a{text-decoration:none}
+.foot a:hover{color:#fff}
+.social{display:flex;gap:10px}
+.social a{width:38px;height:38px;border-radius:50%;background:#ffffff10;display:grid;place-items:center}
+.social svg{width:18px;height:18px}
+
+.fab{position:fixed;left:16px;right:16px;bottom:16px;z-index:60;display:flex;gap:10px}
+.fab .btn{flex:1;box-shadow:0 12px 30px -8px #000a}
+.fab .btn-dark{background:var(--dark);color:#fff;border-color:#ffffff22}
+@media(min-width:720px){.fab{display:none}}
+
+.reveal{opacity:1}
+@media(prefers-reduced-motion:no-preference){
+  .js .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+  .js .reveal.in{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <nav class="nav" aria-label="Main">
+      <a href="#top" class="logo"><span class="logo-mark">YS</span><span>Young Street<small data-i18n="logoSub">Garage · Ottawa</small></span></a>
+      <ul class="menu">
+        <li><a href="#services" data-i18n="navServices">Services</a></li>
+        <li><a href="#why" data-i18n="navWhy">Why us</a></li>
+        <li><a href="#balancing" data-i18n="navBalancing">Balancing</a></li>
+        <li><a href="#about" data-i18n="navAbout">About</a></li>
+        <li><a href="#contact" data-i18n="navContact">Contact</a></li>
+      </ul>
+      <div class="nav-right">
+        <div class="lang" role="group" aria-label="Language / Langue">
+          <button type="button" data-lang="en" aria-pressed="true">EN</button>
+          <button type="button" data-lang="fr" aria-pressed="false">FR</button>
+        </div>
+        <a href="#book" class="btn btn-primary" data-i18n="ctaBook">Book appointment</a>
+        <button class="burger" type="button" aria-expanded="false" aria-controls="mm" aria-label="Menu">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+      </div>
+    </nav>
+    <div class="mobile-menu" id="mm">
+      <a href="#services" data-i18n="navServices">Services</a>
+      <a href="#why" data-i18n="navWhy">Why us</a>
+      <a href="#balancing" data-i18n="navBalancing">Balancing</a>
+      <a href="#about" data-i18n="navAbout">About</a>
+      <a href="#book" data-i18n="ctaBook">Book appointment</a>
+      <a href="#contact" data-i18n="navContact">Contact</a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <div class="status" id="status"><span class="dot"></span><span id="statusText">—</span></div>
+        <h1 data-i18n-html="heroTitle">Your <em>import car</em> specialist</h1>
+        <p class="tag" data-i18n="heroTag">Passion, precision &amp; pride in every repair</p>
+        <div class="hero-ctas">
+          <a href="#book" class="btn btn-primary"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg><span data-i18n="ctaBook">Book appointment</span></a>
+          <a href="tel:+16132342910" class="btn btn-ghost"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>(613) 234-2910</a>
+        </div>
+      </div>
+      <aside class="hero-card">
+        <h3 data-i18n="heroCardTitle">Trusted in Ottawa</h3>
+        <div class="stat"><b>1976</b><span data-i18n="stat1">Family-owned &amp; operated for nearly 50 years</span></div>
+        <div class="stat"><b>2 <small style="font-size:1.2rem" data-i18n="statYrs">yrs</small></b><span data-i18n="stat2">40,000 km warranty on new parts &amp; labour</span></div>
+        <div class="stat"><b>4.4<span class="stars" style="font-size:1rem"> ★</span></b><span data-i18n="stat3">Google rating from 131 reviews</span></div>
+      </aside>
+    </div>
+    <div class="brands">
+      <div class="brands-row">
+        <p data-i18n="brandsLabel">We specialize in</p>
+        <span class="brand"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 .78C18.196.78 23.219 5.803 23.219 12c0 6.196-5.022 11.219-11.219 11.219C5.803 23.219.781 18.196.781 12S5.804.78 12 .78zm-.678.63c-.33.014-.66.042-.992.078l-.107 2.944a9.95 9.95 0 0 1 .71-.094l.07-1.988-.013-.137.043.13.664 1.489h.606l.664-1.488.04-.131-.01.137.07 1.988c.232.022.473.054.71.094l-.109-2.944a14.746 14.746 0 0 0-.992-.078l-.653 1.625-.023.12-.023-.12-.655-1.625zm6.696 1.824l-1.543 2.428c.195.15.452.371.617.522l1.453-.754.092-.069-.069.094-.752 1.453c.163.175.398.458.53.63l2.43-1.544a16.135 16.135 0 0 0-.46-.568L18.777 6.44l-.105.092.078-.115.68-1.356-.48-.48-1.356.68-.115.078.091-.106 1.018-1.539c-.18-.152-.351-.291-.57-.46zM5.5 3.785c-.36.037-.638.283-1.393 1.125a18.97 18.97 0 0 0-.757.914l2.074 1.967c.687-.76.966-1.042 1.508-1.613.383-.405.6-.87.216-1.317-.208-.242-.558-.295-.85-.175l-.028.01.01-.026a.7.7 0 0 0-.243-.734.724.724 0 0 0-.537-.15zm.006.615c.136-.037.277.06.308.2.032.14-.056.272-.154.382-.22.25-1.031 1.098-1.031 1.098l-.402-.383c.417-.51.861-.974 1.062-1.158a.55.55 0 0 1 .217-.139zM12 4.883a7.114 7.114 0 0 0-7.08 6.388v.002a7.122 7.122 0 0 0 8.516 7.697 7.112 7.112 0 0 0 5.68-6.97A7.122 7.122 0 0 0 12 4.885v-.002zm-5.537.242c.047 0 .096.013.14.043.088.059.128.16.106.26-.026.119-.125.231-.205.318l-1.045 1.12-.42-.4s.787-.832 1.045-1.099c.102-.106.168-.17.238-.205a.331.331 0 0 1 .14-.037zM12 5.818A6.175 6.175 0 0 1 18.182 12H12v6.182A6.175 6.175 0 0 1 5.818 12H12V5.818Z"/></svg>BMW</span>
+        <span class="brand"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19.848,7.848c-0.992,0-1.902,0.348-2.616,0.928c-0.714-0.58-1.624-0.928-2.616-0.928 c-0.992,0-1.902,0.348-2.616,0.928c-0.714-0.58-1.624-0.928-2.616-0.928c-0.992,0-1.902,0.348-2.616,0.928 c-0.714-0.58-1.624-0.928-2.616-0.928C1.859,7.848,0,9.707,0,12s1.859,4.152,4.152,4.152c0.992,0,1.902-0.348,2.616-0.928 c0.714,0.58,1.624,0.928,2.616,0.928c0.992,0,1.902-0.348,2.616-0.928c0.714,0.58,1.624,0.928,2.616,0.928 c0.992,0,1.902-0.348,2.616-0.928c0.714,0.58,1.624,0.928,2.616,0.928C22.141,16.152,24,14.293,24,12S22.141,7.848,19.848,7.848z M17.232,13.866c-0.376-0.526-0.598-1.17-0.598-1.866c0-0.696,0.222-1.34,0.598-1.866c0.376,0.526,0.598,1.17,0.598,1.866 C17.83,12.696,17.608,13.34,17.232,13.866z M12,13.866c-0.376-0.526-0.598-1.17-0.598-1.866c0-0.696,0.222-1.34,0.598-1.866 c0.376,0.526,0.598,1.17,0.598,1.866C12.598,12.696,12.376,13.34,12,13.866z M6.768,13.866C6.392,13.34,6.17,12.696,6.17,12 c0-0.696,0.222-1.34,0.598-1.866C7.144,10.66,7.366,11.304,7.366,12C7.366,12.696,7.144,13.34,6.768,13.866z M0.938,12 c0-1.775,1.439-3.214,3.214-3.214c0.736,0,1.414,0.248,1.956,0.665C5.56,10.154,5.232,11.039,5.232,12 c0,0.961,0.328,1.846,0.876,2.549c-0.542,0.416-1.22,0.665-1.956,0.665C2.377,15.214,0.938,13.775,0.938,12z M7.428,14.549 C7.976,13.846,8.304,12.961,8.304,12c0-0.961-0.328-1.846-0.876-2.549c0.542-0.416,1.22-0.665,1.956-0.665 c0.736,0,1.414,0.248,1.956,0.665c-0.549,0.704-0.876,1.588-0.876,2.549c0,0.961,0.328,1.846,0.876,2.549 c-0.542,0.416-1.22,0.665-1.956,0.665C8.648,15.214,7.97,14.966,7.428,14.549z M12.66,14.549c0.549-0.704,0.876-1.588,0.876-2.549 c0-0.961-0.328-1.846-0.876-2.55c0.542-0.416,1.22-0.665,1.956-0.665s1.414,0.248,1.956,0.665 c-0.549,0.704-0.876,1.588-0.876,2.549c0,0.961,0.328,1.846,0.876,2.549c-0.542,0.416-1.22,0.665-1.956,0.665 C13.88,15.214,13.202,14.966,12.66,14.549z M19.848,15.214c-0.736,0-1.414-0.248-1.956-0.665c0.548-0.704,0.876-1.588,0.876-2.549 c0-0.961-0.328-1.846-0.876-2.549c0.542-0.416,1.22-0.665,1.956-0.665c1.775,0,3.214,1.439,3.214,3.214 S21.623,15.214,19.848,15.214z"/></svg>Audi</span>
+        <span class="brand"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.36 0 0 5.36 0 12S5.36 24 12 24 24 18.64 24 12 18.64 0 12 0M12 1.41C13.2 1.41 14.36 1.63 15.43 2L12.13 9.13C12.09 9.17 12.09 9.26 12 9.26S11.91 9.17 11.87 9.13L8.57 2C9.64 1.63 10.8 1.42 12 1.42M6.9 2.74L10.72 10.97C10.8 11.14 10.89 11.19 11 11.19H13C13.12 11.19 13.2 11.14 13.29 10.97L17.06 2.74C18.64 3.64 20 4.93 20.96 6.47L15.6 16.84C15.56 16.93 15.5 16.97 15.47 16.97C15.39 16.97 15.39 16.89 15.34 16.84L13.29 12.3C13.2 12.13 13.12 12.09 13 12.09H11C10.89 12.09 10.8 12.13 10.71 12.3L8.66 16.84C8.61 16.89 8.62 16.97 8.53 16.97C8.44 16.97 8.44 16.89 8.4 16.84L3 6.47C3.94 4.93 5.32 3.64 6.9 2.74M2.06 8.53L8.23 20.53C8.31 20.7 8.4 20.83 8.62 20.83C8.83 20.83 8.91 20.7 9 20.53L11.87 14.14C11.91 14.06 11.96 14 12 14C12.09 14 12.09 14.1 12.13 14.14L15.04 20.53C15.13 20.7 15.21 20.83 15.43 20.83C15.64 20.83 15.73 20.7 15.81 20.53L22 8.53C22.37 9.6 22.59 10.76 22.59 12C22.54 17.79 17.79 22.59 12 22.59C6.21 22.59 1.46 17.79 1.46 12C1.46 10.8 1.67 9.65 2.06 8.53Z"/></svg>Volkswagen</span>
+        <span class="brand"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M0 9.1723h7.5563c.48-.749 1.1108-1.3428 1.8935-1.7828.7822-.4393 1.6314-.659 2.5484-.659.9163 0 1.7673.2203 2.5526.6615.7852.4412 1.4154 1.035 1.8892 1.7803H24l-.7483.7483h-6.3994a4.278 4.278 0 0 1 .299.8886h5.2333l-.7483.749h-4.3692c.0129.1932.019.3396.019.4393 0 .0997-.0061.2468-.019.44h3.4904l-.7489.7483h-2.8572a4.0661 4.0661 0 0 1-.299.8844h2.264l-.7582.7483H16.44c-.4738.7464-1.104 1.3421-1.8892 1.7858-.7853.4437-1.6363.6652-2.5526.6652-.917 0-1.7662-.2209-2.5484-.6627-.7827-.4425-1.4135-1.0388-1.8935-1.7883H5.6418l-.744-.7483h2.2597a4.093 4.093 0 0 1-.296-.8844H4.0062l-.7582-.7483h3.4898c-.0129-.1932-.019-.3403-.019-.44 0-.0997.0061-.2461.019-.4393h-4.36l-.7581-.749h5.2418a4.306 4.306 0 0 1 .296-.8886H.7483zm7.8437 1.0714c-.2382.5581-.3575 1.1428-.3575 1.7538 0 .6111.1193 1.1963.3575 1.7545.2381.5575.5594 1.0394.963 1.4443.4038.405.8838.7268 1.44.9662.5564.2393 1.1404.3587 1.7515.3587.6104 0 1.195-.1194 1.7532-.3587.5575-.2394 1.0388-.5613 1.4424-.9662.4037-.405.725-.8868.9656-1.4443.24-.5582.36-1.1434.36-1.7545 0-.611-.12-1.1957-.36-1.7538-.2406-.5582-.5619-1.0388-.9656-1.4425-.4036-.403-.8849-.7243-1.4424-.9637-.5582-.2393-1.1428-.3587-1.7532-.3587-.6111 0-1.1951.1194-1.7514.3587-.5563.2394-1.0363.5607-1.44.9637-.4037.4037-.725.8843-.9631 1.4425zm.5538 2.9421h.4677l-.0135-1.7729.5661 1.773.52-.0032.5557-1.7606v1.7637h.4991v-2.3766l-.7028-.0006-.603 1.8954-.6148-1.893-.6745-.0018zm3.133 0h.4953v-2.3766h-.4953zm1.0332 0h.477v-1.712l.9488 1.712h.5754v-2.3766h-.4677v1.7219l-.9489-1.7219h-.5846zm2.5483 0h.4862v-2.3766h-.4862z"/></svg>Mini</span>
+        <span class="brand"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M10.873 12.584h.49l-.001-1.452h-.489v-.322h1.94v.322h-.483v1.451h.449c.415 0 .687-.274.687-.646h.32v.972h-2.913v-.325zm4.313.327h1.134l.962-1.779h.482v-.322h-1.45v.322h.419l-.701 1.295-.71-1.295h.51l-.002-.322h-2.104v.322h.482l.978 1.779zM5.073 10.81H2.968v.322h.481l.98 1.779h1.133l.962-1.779h.482v-.322h-1.45v.322h.418l-.7 1.295-.71-1.295h.509v-.322zm3.707-.044c.975 0 1.498.486 1.498 1.096 0 .618-.494 1.111-1.493 1.111-.999 0-1.497-.493-1.497-1.111 0-.61.517-1.096 1.492-1.096zm.017.33c-.333-.005-.527.348-.534.753-.006.39.15.784.506.79.366.007.524-.39.53-.772.008-.405-.168-.764-.502-.77zm10.738-.33c.974 0 1.497.486 1.497 1.096 0 .618-.493 1.111-1.492 1.111-1 0-1.498-.493-1.498-1.111 0-.61.518-1.096 1.493-1.096zm-.517 1.083c-.007.39.15.784.506.79.366.007.524-.39.53-.772.008-.405-.168-.764-.502-.77-.333-.006-.527.347-.534.752zm2.857-6.667L20.656 6.4A10.26 10.26 0 0 1 22.308 12c0 5.693-4.615 10.308-10.308 10.308S1.692 17.693 1.692 12 6.307 1.692 12 1.692c2.07 0 3.996.61 5.611 1.66l1.219-1.219A11.944 11.944 0 0 0 12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12c0-2.533-.785-4.882-2.125-6.818zM18.036.472v.337c.728.394 1.413.859 2.047 1.382l-1.71 1.71a10.29 10.29 0 0 1 1.735 1.732l1.708-1.708c.524.636.989 1.322 1.384 2.038h.328V.473h-5.492z"/></svg>Volvo</span>
+        <span class="brand"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0c6.623 0 12 5.377 12 12s-5.377 12-12 12S0 18.623 0 12 5.377 0 12 0zM3.245 17.539A10.357 10.357 0 0012 22.36c3.681 0 6.917-1.924 8.755-4.821L12 14.203zm10.663-6.641l7.267 5.915A10.306 10.306 0 0022.36 12c0-5.577-4.417-10.131-9.94-10.352zm-2.328-9.25C6.057 1.869 1.64 6.423 1.64 12c0 1.737.428 3.374 1.185 4.813l7.267-5.915z"/></svg>Mercedes</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div><p class="eyebrow" data-i18n="svcEyebrow">Services</p><h2 data-i18n="svcTitle">Complete care for your European car</h2></div>
+      <p class="lead" data-i18n="svcLead">From routine maintenance to complex diagnostics, our factory-trained technicians use OEM parts and dealer-level equipment — without the dealer price tag.</p>
+    </div>
+    <div class="grid-3" id="svcGrid"></div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section class="why" id="why">
+  <div class="wrap why-grid">
+    <div class="reveal">
+      <p class="eyebrow" data-i18n="whyEyebrow">Why Young Street</p>
+      <h2 data-i18n="whyTitle">Dealer expertise. Honest garage.</h2>
+      <p class="lead" style="margin-top:18px" data-i18n="whyLead">Customers regularly tell us they saved $500–$800 compared to dealership quotes — and that we'll tell you when a repair isn't needed, or is covered by your warranty.</p>
+      <div class="warranty">
+        <b data-i18n="warrantyBig">2 yrs / 40,000 km</b>
+        <p data-i18n="warrantyTxt">Warranty on new parts &amp; labour. Peace of mind on every job.</p>
+      </div>
+    </div>
+    <div class="feat reveal" id="featList"></div>
+  </div>
+</section>
+
+<!-- BALANCING -->
+<section class="balance" id="balancing">
+  <div class="wrap balance-grid">
+    <div class="reveal">
+      <p class="eyebrow" data-i18n="balEyebrow">Hunter Road Force® Balancing</p>
+      <h2 data-i18n="balTitle">Vibration-free driving, finally</h2>
+      <p class="lead" style="margin-top:18px" data-i18n="balLead">Conventional balancers only spin the wheel. Road Force simulates the weight of the road pressing on your tire to find what others miss — the perfect match for low-profile tires on European cars.</p>
+      <ul class="checks">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12l5 5L20 7"/></svg><span data-i18n="bal1">Detects tire and rim uniformity problems</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12l5 5L20 7"/></svg><span data-i18n="bal2">Eliminates steering-wheel shimmy at highway speeds</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12l5 5L20 7"/></svg><span data-i18n="bal3">Extends tire life and protects suspension parts</span></li>
+      </ul>
+      <a href="#book" class="btn btn-primary" style="margin-top:30px" data-i18n="balCta">Book a balancing</a>
+    </div>
+    <div class="wheel reveal" aria-hidden="true">
+      <svg viewBox="0 0 400 400">
+        <circle cx="200" cy="200" r="190" fill="none" stroke="#ffffff10" stroke-width="2"/>
+        <g class="spin">
+          <circle cx="200" cy="200" r="160" fill="#1b1e22" stroke="#2b3036" stroke-width="34"/>
+          <circle cx="200" cy="200" r="160" fill="none" stroke="#ffffff18" stroke-width="2" stroke-dasharray="6 10"/>
+          <circle cx="200" cy="200" r="110" fill="none" stroke="#9aa0a8" stroke-width="6"/>
+          <g stroke="#9aa0a8" stroke-width="14" stroke-linecap="round">
+            <path d="M200 120v-0M200 200L200 100"/><path d="M200 200l95 31"/><path d="M200 200l59 81"/><path d="M200 200l-59 81"/><path d="M200 200l-95 31"/>
+          </g>
+          <circle cx="200" cy="200" r="34" fill="#c8102e"/>
+          <circle cx="200" cy="200" r="10" fill="#111316"/>
+        </g>
+        <path d="M30 330 Q200 300 370 330" stroke="#c8102e" stroke-width="4" fill="none" stroke-dasharray="10 8"/>
+      </svg>
+    </div>
+  </div>
+
+  <!-- BALANCE SIMULATOR -->
+  <div class="wrap">
+    <div class="sim reveal" id="sim">
+      <div class="sim-head">
+        <p class="eyebrow" data-i18n="simEyebrow">Interactive simulator</p>
+        <h3 data-i18n="simTitle">What does an unbalanced wheel really do?</h3>
+        <p data-i18n="simLead">Move the sliders: a weight difference of just a few grams turns into a force that hits your suspension hundreds of times per kilometre.</p>
+      </div>
+      <div class="sim-grid">
+        <div class="sim-stage" aria-hidden="true">
+          <div class="sim-scene">
+            <svg class="sim-steer" id="simSteer" viewBox="0 0 120 120">
+              <circle cx="60" cy="60" r="50" fill="none" stroke="#d9d7d2" stroke-width="10"/>
+              <path d="M14 66 Q60 52 106 66" fill="none" stroke="#d9d7d2" stroke-width="10" stroke-linecap="round"/>
+              <path d="M60 62 V108" stroke="#d9d7d2" stroke-width="10" stroke-linecap="round"/>
+              <circle cx="60" cy="64" r="15" fill="#2b3036" stroke="#d9d7d2" stroke-width="4"/>
+              <rect x="56" y="6" width="8" height="12" rx="2" fill="#c8102e"/>
+            </svg>
+            <span class="sim-label" data-i18n="simSteerLbl">Steering wheel</span>
+          </div>
+          <div class="sim-scene">
+            <svg viewBox="0 0 220 220" class="sim-wheelsvg">
+              <g id="simHop">
+                <g id="simWheel">
+                  <circle cx="110" cy="100" r="80" fill="#1b1e22" stroke="#2b3036" stroke-width="22"/>
+                  <circle cx="110" cy="100" r="80" fill="none" stroke="#ffffff1a" stroke-width="2" stroke-dasharray="5 9"/>
+                  <circle cx="110" cy="100" r="54" fill="none" stroke="#9aa0a8" stroke-width="4"/>
+                  <g stroke="#9aa0a8" stroke-width="8" stroke-linecap="round">
+                    <path d="M110 100V48"/><path d="M110 100l49 16"/><path d="M110 100l31 42"/><path d="M110 100l-31 42"/><path d="M110 100l-49 16"/>
+                  </g>
+                  <circle cx="110" cy="100" r="17" fill="#c8102e"/>
+                  <circle cx="110" cy="100" r="5" fill="#111316"/>
+                  <rect id="simWeight" x="104" y="40" width="12" height="9" rx="2" fill="#f5b301"/>
+                </g>
+              </g>
+              <path id="simRoad" d="M0 201 H220" stroke="#5b6068" stroke-width="3" fill="none"/>
+            </svg>
+            <span class="sim-label" data-i18n="simWheelLbl">Front wheel</span>
+          </div>
+          <div class="sim-scene sim-tread">
+            <svg viewBox="0 0 220 70" preserveAspectRatio="none"><path id="simTread" d="" fill="#2b3036"/></svg>
+            <span class="sim-label" data-i18n="simTreadLbl">Tread after 20,000 km</span>
+          </div>
+        </div>
+
+        <div class="sim-controls">
+          <div class="sim-ctrl">
+            <div class="sim-row"><label for="simG" data-i18n="simImb">Imbalance</label><output id="simGOut">30 g</output></div>
+            <input type="range" id="simG" min="0" max="80" step="5" value="30">
+          </div>
+          <div class="sim-ctrl">
+            <div class="sim-row"><label for="simV" data-i18n="simSpeed">Speed</label><output id="simVOut">100 km/h</output></div>
+            <input type="range" id="simV" min="20" max="130" step="5" value="100">
+          </div>
+
+          <div class="sim-stats">
+            <div><b id="simF">—</b><span data-i18n="simForce">Force pulling on the wheel</span></div>
+            <div><b id="simHz">—</b><span data-i18n="simHits">Hits per second</span></div>
+            <div><b id="simYear">—</b><span data-i18n="simYearLbl">Impacts per 20,000 km</span></div>
+          </div>
+
+          <div class="sim-meter">
+            <div class="sim-row"><span data-i18n="simLevel">Vibration level</span><strong id="simLvl">—</strong></div>
+            <div class="sim-bar"><i id="simBar"></i></div>
+          </div>
+
+          <ul class="sim-effects" id="simEffects"></ul>
+
+          <div class="sim-actions">
+            <button type="button" class="btn btn-primary" id="simFix"><span data-i18n="simFixBtn">Balance it with Road Force</span></button>
+            <button type="button" class="btn btn-ghost" id="simReset" data-i18n="simReset">Reset</button>
+          </div>
+        </div>
+      </div>
+      <p class="sim-note" data-i18n="simNote">Illustrative model: centrifugal force F = m·r·ω² for a weight on the rim of a 16″ wheel (tire radius ≈ 32 cm). Real-world effects vary with vehicle, tires and road.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="wrap">
+    <div class="about-grid reveal" style="margin-bottom:56px">
+      <div><p class="eyebrow" data-i18n="aboutEyebrow">Our story</p><h2 data-i18n="aboutTitle">Two generations under one roof</h2></div>
+      <div>
+        <p class="lead" data-i18n="aboutLead">Young Street Garage was founded in 1976 by Bela Csombok Sr. and Winfried Hillebrand. Today their sons, Bela Jr. and Kurt, carry on the same values: quality work, fair prices and complete honesty with every customer.</p>
+      </div>
+    </div>
+    <div class="video-wrap reveal" id="video">
+      <div class="video" id="videoBox">
+        <button type="button" class="video-btn" id="videoBtn" style="--thumb:url('https://i.ytimg.com/vi/g3S1-sj_RcE/hqdefault.jpg')" data-i18n-aria="videoPlay" aria-label="Play video">
+          <span class="play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 4l15 8-15 8z"/></svg></span>
+          <span><span class="vt" data-i18n="videoTitle">Meet the family behind the garage</span><small data-i18n="videoSub">Young Street Garage · Since 1976</small></span>
+        </button>
+      </div>
+      <a class="video-link" href="https://www.youtube.com/watch?v=g3S1-sj_RcE" target="_blank" rel="noopener"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 3h7v7M21 3l-9 9M19 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h5"/></svg><span data-i18n="videoWatch">Watch on YouTube</span></a>
+    </div>
+    <div class="timeline reveal">
+      <div class="tl">
+        <div class="tl-photos"><figure class="tl-photo vintage"><img src="img/car_repair_shop-01b-768x450.jpg" alt="" loading="lazy"></figure><button type="button" class="tl-play" id="tlPlay" data-i18n-aria="videoPlay" aria-label="Play video"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 4l15 8-15 8z"/></svg></button></div>
+        <b>1976</b><h3 data-i18n="tl1t">The beginning</h3><p data-i18n="tl1">Two mechanics open a small import shop on Young Street in Ottawa.</p>
+      </div>
+      <div class="tl">
+        <div class="tl-photos">
+          <figure class="tl-photo"><img src="img/bela-480x424.png" alt="Bela Csombok Jr." loading="lazy"></figure>
+          <figure class="tl-photo"><img src="img/kurt-480x424.jpg" alt="Kurt" loading="lazy"></figure>
+        </div>
+        <b data-i18n="tl2y">Next gen</b><h3 data-i18n="tl2t">Family legacy</h3><p data-i18n="tl2">Bela Jr. and Kurt take the wheel, keeping the founders' standards alive.</p>
+        <div class="tl-names"><span>Bela Csombok Jr.</span><span>Kurt</span></div>
+      </div>
+      <div class="tl">
+        <div class="tl-photos"><figure class="tl-photo"><img src="img/car_repair_shop-02-768x512.jpg" alt="" loading="lazy"></figure></div>
+        <b data-i18n="tl3y">Today</b><h3 data-i18n="tl3t">Always learning</h3><p data-i18n="tl3">Technicians complete 20–50 hours of manufacturer training every year.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="reviews">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div><p class="eyebrow" data-i18n="revEyebrow">Reviews</p><h2 data-i18n="revTitle">What Ottawa drivers say</h2></div>
+      <div class="rating-big"><b>4.4</b><div><div class="stars" style="font-size:1.4rem">★★★★☆</div><span style="color:var(--muted);font-size:.9rem" data-i18n="revCount">131 Google reviews</span></div></div>
+    </div>
+    <div class="grid-3 reveal">
+      <article class="card review"><div class="stars">★★★★★</div><p data-i18n="rev1">“They quoted $500–$800 less than the dealership for the same work — and the car runs perfectly.”</p><small data-i18n="revSrc">Summary of Google reviews</small></article>
+      <article class="card review"><div class="stars">★★★★★</div><p data-i18n="rev2">“Instead of doing a $2,000+ repair, they told me it was covered under my warranty. That's honesty.”</p><small data-i18n="revSrc">Summary of Google reviews</small></article>
+      <article class="card review"><div class="stars">★★★★★</div><p data-i18n="rev3">“Clear explanations, transparent diagnostics and quality work. My go-to shop for my BMW.”</p><small data-i18n="revSrc">Summary of Google reviews</small></article>
+    </div>
+  </div>
+</section>
+
+<!-- BOOKING -->
+<section id="book">
+  <div class="wrap booking-grid">
+    <div class="reveal">
+      <p class="eyebrow" data-i18n="bookEyebrow">Appointments</p>
+      <h2 data-i18n="bookTitle">Book your visit</h2>
+      <p class="lead" style="margin-top:18px" data-i18n="bookLead">Tell us about your car and what it needs. We'll confirm your appointment by phone or email within one business day.</p>
+      <ul class="info-list">
+        <li><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg></span><div><b data-i18n="infoPhone">Phone</b><a href="tel:+16132342910">(613) 234-2910</a></div></li>
+        <li><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><div><b data-i18n="infoHours">Hours</b><span data-i18n="hoursShort">Mon–Fri · 7:30 AM – 5:00 PM</span></div></li>
+        <li><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg></span><div><b data-i18n="infoAddr">Address</b><a href="https://maps.google.com/?q=22+Young+St+E,+Ottawa,+ON" target="_blank" rel="noopener">22 Young St. E., Ottawa, ON</a></div></li>
+      </ul>
+    </div>
+    <form id="bookForm" class="reveal" novalidate>
+      <div class="field"><label for="f-name" data-i18n="fName">Full name</label><input id="f-name" name="name" autocomplete="name" required data-i18n-placeholder="phName" placeholder="Jane Smith"><span class="err"></span></div>
+      <div class="field"><label for="f-phone" data-i18n="fPhone">Phone</label><input id="f-phone" name="phone" type="tel" autocomplete="tel" required placeholder="(613) 555-0123"><span class="err"></span></div>
+      <div class="field full"><label for="f-email" data-i18n="fEmail">Email</label><input id="f-email" name="email" type="email" autocomplete="email" required data-i18n-placeholder="phEmail" placeholder="you@example.com"><span class="err"></span></div>
+      <div class="field"><label for="f-make" data-i18n="fMake">Make</label>
+        <select id="f-make" name="make" required><option value="" data-i18n="optSelect">Select…</option><option>BMW</option><option>Audi</option><option>Volkswagen</option><option>Mini</option><option>Volvo</option><option>Mercedes-Benz</option><option value="other" data-i18n="optOther">Other</option></select><span class="err"></span></div>
+      <div class="field"><label for="f-model" data-i18n="fModel">Model &amp; year</label><input id="f-model" name="model" data-i18n-placeholder="phModel" placeholder="e.g. 2018 Audi A4"><span class="err"></span></div>
+      <div class="field"><label for="f-svc" data-i18n="fService">Service needed</label><select id="f-svc" name="service" required></select><span class="err"></span></div>
+      <div class="field"><label for="f-date" data-i18n="fDate">Preferred date</label><input id="f-date" name="date" type="date" required><span class="err"></span></div>
+      <div class="field full"><label for="f-msg" data-i18n="fMsg">Describe the issue (optional)</label><textarea id="f-msg" name="msg" data-i18n-placeholder="phMsg" placeholder="Noises, warning lights, when it happens…"></textarea></div>
+      <label class="field full" style="display:flex;gap:10px;align-items:center;font-weight:500"><input type="checkbox" name="courtesy" style="width:auto"><span data-i18n="fCourtesy">I may need a courtesy car (subject to availability)</span></label>
+      <button class="btn btn-primary full" type="submit" style="grid-column:1/-1" data-i18n="fSubmit">Request appointment</button>
+      <div class="form-ok" role="status" aria-live="polite" id="formOk"></div>
+      <p class="note" data-i18n="fNote">Same-day diagnostics available. Weekend requests are confirmed for the next business day.</p>
+    </form>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" style="padding-top:0">
+  <div class="wrap">
+    <div class="map reveal">
+      <div class="map-art" aria-hidden="true">
+        <div class="road" style="left:0;right:0;top:58%;height:22px"></div>
+        <div class="road" style="top:0;bottom:0;left:38%;width:18px"></div>
+        <div class="road" style="top:0;bottom:0;left:74%;width:12px;opacity:.7"></div>
+        <span style="position:absolute;left:8%;top:calc(58% + 30px);font:600 .7rem var(--body);letter-spacing:.15em;color:#ffffff55">YOUNG ST E</span>
+        <div class="pin"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a7 7 0 0 0-7 7c0 5.3 7 13 7 13s7-7.7 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg></div>
+      </div>
+      <div class="map-body">
+        <p class="eyebrow" data-i18n="contactEyebrow">Visit us</p>
+        <h2 style="font-size:2.4rem">22 Young St. E.</h2>
+        <p style="color:var(--dark-muted)">Ottawa, ON</p>
+        <table class="hours" id="hoursTable"></table>
+        <div style="display:flex;flex-wrap:wrap;gap:10px">
+          <a class="btn btn-primary" href="https://maps.google.com/?q=22+Young+St+E,+Ottawa,+ON" target="_blank" rel="noopener" data-i18n="ctaDirections">Get directions</a>
+          <a class="btn btn-ghost" style="color:#fff" href="tel:+16132342910" data-i18n="ctaCall">Call now</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span>© <span id="yr"></span> Young Street Garage · <span data-i18n="footTag">Your import car specialist since 1976</span></span>
+    <div class="social">
+      <a href="https://www.instagram.com/ysgottawa" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a>
+      <a href="https://www.facebook.com/ysgottawa" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 8h3V4h-3a4 4 0 0 0-4 4v2H7v4h3v8h4v-8h3l1-4h-4V8z"/></svg></a>
+    </div>
+  </div>
+</footer>
+
+<div class="fab">
+  <a href="tel:+16132342910" class="btn btn-dark" data-i18n="ctaCall">Call now</a>
+  <a href="#book" class="btn btn-primary" data-i18n="fabBook">Book</a>
+</div>
+
+<script>
+document.documentElement.classList.add('js');
+const ICONS = {
+  brakes:'<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/><path d="M12 3a9 9 0 0 1 9 9"/>',
+  trans:'<circle cx="6" cy="6" r="2"/><circle cx="6" cy="18" r="2"/><circle cx="18" cy="6" r="2"/><path d="M6 8v8M18 8v4H6"/>',
+  oil:'<path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z"/>',
+  exhaust:'<path d="M3 15h10a3 3 0 0 0 3-3V9h5M3 11h9"/><path d="M18 17c1 0 1 1 2 1s1-1 2-1"/>',
+  tires:'<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><path d="M12 3v5M12 16v5M3 12h5M16 12h5"/>',
+  maint:'<path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.4-.6-.6-2.4z"/>',
+  hvac:'<path d="M12 2v20M4.9 4.9l14.2 14.2M2 12h20M4.9 19.1L19.1 4.9"/>',
+  steer:'<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="2"/><path d="M3.5 10h7M13.5 10h7M12 14v7"/>',
+  elec:'<path d="M13 2L4 14h7l-1 8 9-12h-7z"/>',
+  train:'<path d="M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/>',
+  oem:'<path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6z"/><path d="M9 12l2 2 4-4"/>',
+  diag:'<rect x="3" y="4" width="18" height="12" rx="2"/><path d="M7 12l3-3 2 2 4-4M8 20h8"/>',
+  car:'<path d="M5 17h14v-5l-2-5H7l-2 5z"/><circle cx="8" cy="17" r="2"/><circle cx="16" cy="17" r="2"/>',
+  save:'<path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>'
+};
+const SERVICES = ['brakes','trans','oil','exhaust','tires','maint','hvac','steer','elec'];
+const FEATS = ['train','oem','diag','save','car'];
+
+const T = {
+en:{
+  logoSub:'Garage · Ottawa', navServices:'Services', navWhy:'Why us', navBalancing:'Balancing', navAbout:'About', navContact:'Contact',
+  ctaBook:'Book appointment', fabBook:'Book', ctaCall:'Call now', ctaDirections:'Get directions',
+  heroTitle:'Your <em>import car</em> specialist', heroTag:'Passion, precision & pride in every repair',
+  heroCardTitle:'Trusted in Ottawa', stat1:'Family-owned & operated for nearly 50 years', statYrs:'yrs',
+  stat2:'40,000 km warranty on new parts & labour', stat3:'Google rating from 131 reviews', brandsLabel:'We specialize in',
+  open:'Open now · until 5:00 PM', closed:'Closed · opens {d} at 7:30 AM', today:'today', tomorrow:'tomorrow',
+  svcEyebrow:'Services', svcTitle:'Complete care for your European car',
+  svcLead:'From routine maintenance to complex diagnostics, our factory-trained technicians use OEM parts and dealer-level equipment — without the dealer price tag.',
+  s_brakes:['Brakes','Pads, rotors, calipers and fluid service for confident, quiet stopping.'],
+  s_trans:['Transmission','Manual and automatic transmission service, diagnostics and repair.'],
+  s_oil:['Oil changes','Manufacturer-approved oils and filters to protect your engine.'],
+  s_exhaust:['Mufflers & exhaust','Exhaust system repair and replacement, from manifold to tailpipe.'],
+  s_tires:['Tires','Seasonal swaps, sales and Hunter Road Force® balancing.'],
+  s_maint:['Vehicle maintenance','Scheduled factory maintenance that keeps your warranty intact.'],
+  s_hvac:['Heating & cooling','A/C recharge, heater and climate-control repair for every season.'],
+  s_steer:['Steering & suspension','Shocks, struts, control arms and alignment for precise handling.'],
+  s_elec:['Electrical diagnostics','Dealer-level scan tools to find warning-light faults fast.'],
+  whyEyebrow:'Why Young Street', whyTitle:'Dealer expertise. Honest garage.',
+  whyLead:"Customers regularly tell us they saved $500–$800 compared to dealership quotes — and that we'll tell you when a repair isn't needed, or is covered by your warranty.",
+  warrantyBig:'2 yrs / 40,000 km', warrantyTxt:'Warranty on new parts & labour. Peace of mind on every job.',
+  f_train:['Factory-trained technicians','20–50 hours of manufacturer training per technician, every year.'],
+  f_oem:['OEM parts, fair prices','Original-equipment parts at competitive pricing.'],
+  f_diag:['Transparent diagnostics','We show you what we find and explain your options before any work.'],
+  f_save:['Save vs. the dealership','The same quality of work, often hundreds of dollars less.'],
+  f_car:['Courtesy cars','Rental vehicles available in select cases so you keep moving.'],
+  balEyebrow:'Hunter Road Force® Balancing', balTitle:'Vibration-free driving, finally',
+  balLead:'Conventional balancers only spin the wheel. Road Force simulates the weight of the road pressing on your tire to find what others miss — the perfect match for low-profile tires on European cars.',
+  bal1:'Detects tire and rim uniformity problems', bal2:'Eliminates steering-wheel shimmy at highway speeds', bal3:'Extends tire life and protects suspension parts', balCta:'Book a balancing',
+  aboutEyebrow:'Our story', aboutTitle:'Two generations under one roof',
+  aboutLead:'Young Street Garage was founded in 1976 by Bela Csombok Sr. and Winfried Hillebrand. Today their sons, Bela Jr. and Kurt, carry on the same values: quality work, fair prices and complete honesty with every customer.',
+  tl1t:'The beginning', tl1:'Two mechanics open a small import shop on Young Street in Ottawa.',
+  tl2y:'Next gen', tl2t:'Family legacy', tl2:"Bela Jr. and Kurt take the wheel, keeping the founders' standards alive.",
+  tl3y:'Today', tl3t:'Always learning', tl3:'Technicians complete 20–50 hours of manufacturer training every year.',
+  revEyebrow:'Reviews', revTitle:'What Ottawa drivers say', revCount:'131 Google reviews', revSrc:'Summary of Google reviews',
+  rev1:'“They quoted $500–$800 less than the dealership for the same work — and the car runs perfectly.”',
+  rev2:"“Instead of doing a $2,000+ repair, they told me it was covered under my warranty. That's honesty.”",
+  rev3:'“Clear explanations, transparent diagnostics and quality work. My go-to shop for my BMW.”',
+  bookEyebrow:'Appointments', bookTitle:'Book your visit',
+  bookLead:"Tell us about your car and what it needs. We'll confirm your appointment by phone or email within one business day.",
+  infoPhone:'Phone', infoHours:'Hours', infoAddr:'Address', hoursShort:'Mon–Fri · 7:30 AM – 5:00 PM',
+  fName:'Full name', fPhone:'Phone', fEmail:'Email', fMake:'Make', fModel:'Model & year', fService:'Service needed',
+  fDate:'Preferred date', fMsg:'Describe the issue (optional)', fCourtesy:'I may need a courtesy car (subject to availability)',
+  fSubmit:'Request appointment', fNote:'Same-day diagnostics available. Weekend requests are confirmed for the next business day.',
+  phName:'Jane Smith', phEmail:'you@example.com', phModel:'e.g. 2018 Audi A4', phMsg:'Noises, warning lights, when it happens…',
+  optSelect:'Select…', optOther:'Other', svcOther:'Other / not sure',
+  errReq:'This field is required', errEmail:'Enter a valid email', errPhone:'Enter a valid phone number', errDate:'Choose a weekday from today on',
+  ok:'Thanks, {n}! Your request for {s} on {d} has been received. We will contact you within one business day to confirm.',
+  contactEyebrow:'Visit us', days:['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'], hrsOpen:'7:30 AM – 5:00 PM', hrsClosed:'Closed',
+  footTag:'Your import car specialist since 1976',
+  videoTitle:'Meet the family behind the garage', videoSub:'Young Street Garage · Since 1976', videoWatch:'Watch on YouTube', videoPlay:'Play the Young Street Garage video',
+  simEyebrow:'Interactive simulator', simTitle:'What does an unbalanced wheel really do?',
+  simLead:'Move the sliders: a weight difference of just a few grams turns into a force that hits your suspension hundreds of times per kilometre.',
+  simSteerLbl:'Steering wheel', simWheelLbl:'Front wheel', simTreadLbl:'Tread after 20,000 km',
+  simImb:'Imbalance', simSpeed:'Speed', simForce:'Force pulling on the wheel', simHits:'Hits per second', simYearLbl:'Impacts per 20,000 km',
+  simLevel:'Vibration level', simLevels:['Perfectly balanced','Slight','Noticeable','Strong','Severe'],
+  simFx:['Micro-vibrations that make long drives more tiring','Steering-wheel shimmy at highway speeds','Cupped, uneven tire wear','Extra stress on wheel bearings, shocks and tie rods','Tires and suspension parts replaced much sooner'],
+  simOk:['Smooth, quiet ride','Even tire wear and longer tire life','Less stress on suspension and steering parts'],
+  simFixBtn:'Balance it with Road Force', simReset:'Reset', simMillion:'M',
+  simNote:'Illustrative model: centrifugal force F = m·r·ω² for a weight on the rim of a 16″ wheel (tire radius ≈ 32 cm). Real-world effects vary with vehicle, tires and road.'
+},
+fr:{
+  logoSub:'Garage · Ottawa', navServices:'Services', navWhy:'Pourquoi nous', navBalancing:'Équilibrage', navAbout:'À propos', navContact:'Nous joindre',
+  ctaBook:'Prendre rendez-vous', fabBook:'Rendez-vous', ctaCall:'Appeler', ctaDirections:'Itinéraire',
+  heroTitle:'Votre spécialiste en <em>voitures importées</em>', heroTag:'Passion, précision et fierté dans chaque réparation',
+  heroCardTitle:'La confiance d’Ottawa', stat1:'Entreprise familiale depuis près de 50 ans', statYrs:'ans',
+  stat2:'Garantie 40 000 km sur les pièces neuves et la main-d’œuvre', stat3:'Note Google selon 131 avis', brandsLabel:'Nos spécialités',
+  open:'Ouvert · jusqu’à 17 h', closed:'Fermé · ouvre {d} à 7 h 30', today:'aujourd’hui', tomorrow:'demain',
+  svcEyebrow:'Services', svcTitle:'Un entretien complet pour votre voiture européenne',
+  svcLead:'De l’entretien courant aux diagnostics complexes, nos techniciens formés en usine utilisent des pièces d’origine et un équipement de concessionnaire — sans le prix du concessionnaire.',
+  s_brakes:['Freins','Plaquettes, disques, étriers et liquide pour un freinage sûr et silencieux.'],
+  s_trans:['Transmission','Entretien, diagnostic et réparation de transmissions manuelles et automatiques.'],
+  s_oil:['Changement d’huile','Huiles et filtres approuvés par le fabricant pour protéger votre moteur.'],
+  s_exhaust:['Silencieux et échappement','Réparation et remplacement du système d’échappement, du collecteur au tuyau arrière.'],
+  s_tires:['Pneus','Changements saisonniers, vente et équilibrage Hunter Road Force®.'],
+  s_maint:['Entretien du véhicule','Entretien périodique selon le fabricant, pour préserver votre garantie.'],
+  s_hvac:['Chauffage et climatisation','Recharge de climatiseur, réparation du chauffage et de la climatisation.'],
+  s_steer:['Direction et suspension','Amortisseurs, jambes de force, bras de suspension et alignement.'],
+  s_elec:['Diagnostic électrique','Outils de diagnostic de concessionnaire pour trouver rapidement les pannes.'],
+  whyEyebrow:'Pourquoi Young Street', whyTitle:'L’expertise du concessionnaire. L’honnêteté du garage.',
+  whyLead:'Nos clients nous disent souvent avoir économisé de 500 $ à 800 $ par rapport aux soumissions des concessionnaires — et nous vous dirons quand une réparation n’est pas nécessaire ou est couverte par votre garantie.',
+  warrantyBig:'2 ans / 40 000 km', warrantyTxt:'Garantie sur les pièces neuves et la main-d’œuvre. L’esprit tranquille à chaque visite.',
+  f_train:['Techniciens formés en usine','De 20 à 50 heures de formation du fabricant par technicien, chaque année.'],
+  f_oem:['Pièces d’origine, prix justes','Des pièces d’origine (OEM) à prix concurrentiels.'],
+  f_diag:['Diagnostic transparent','Nous vous montrons ce que nous trouvons et expliquons vos options avant tout travail.'],
+  f_save:['Économisez vs le concessionnaire','La même qualité de travail, souvent pour des centaines de dollars de moins.'],
+  f_car:['Voitures de courtoisie','Véhicules de location offerts dans certains cas pour rester mobile.'],
+  balEyebrow:'Équilibrage Hunter Road Force®', balTitle:'Enfin une conduite sans vibrations',
+  balLead:'Les équilibreuses classiques ne font que tourner la roue. Road Force simule la pression de la route sur votre pneu pour détecter ce que les autres ne voient pas — idéal pour les pneus à profil bas des voitures européennes.',
+  bal1:'Détecte les défauts d’uniformité des pneus et des jantes', bal2:'Élimine les vibrations du volant sur l’autoroute', bal3:'Prolonge la vie des pneus et protège la suspension', balCta:'Réserver un équilibrage',
+  aboutEyebrow:'Notre histoire', aboutTitle:'Deux générations sous un même toit',
+  aboutLead:'Young Street Garage a été fondé en 1976 par Bela Csombok père et Winfried Hillebrand. Aujourd’hui, leurs fils Bela fils et Kurt perpétuent les mêmes valeurs : travail de qualité, prix justes et honnêteté totale envers chaque client.',
+  tl1t:'Les débuts', tl1:'Deux mécaniciens ouvrent un petit atelier de voitures importées sur la rue Young à Ottawa.',
+  tl2y:'La relève', tl2t:'Héritage familial', tl2:'Bela fils et Kurt prennent le volant et maintiennent les standards des fondateurs.',
+  tl3y:'Aujourd’hui', tl3t:'Toujours en formation', tl3:'Nos techniciens suivent de 20 à 50 heures de formation du fabricant chaque année.',
+  revEyebrow:'Avis', revTitle:'Ce qu’en disent les conducteurs d’Ottawa', revCount:'131 avis Google', revSrc:'Résumé des avis Google',
+  rev1:'« Leur soumission était de 500 $ à 800 $ de moins que celle du concessionnaire pour le même travail — et la voiture roule parfaitement. »',
+  rev2:'« Au lieu d’une réparation de plus de 2 000 $, ils m’ont dit qu’elle était couverte par ma garantie. Ça, c’est de l’honnêteté. »',
+  rev3:'« Explications claires, diagnostic transparent et travail de qualité. Mon garage de confiance pour ma BMW. »',
+  bookEyebrow:'Rendez-vous', bookTitle:'Réservez votre visite',
+  bookLead:'Parlez-nous de votre voiture et de ses besoins. Nous confirmerons votre rendez-vous par téléphone ou par courriel dans un délai d’un jour ouvrable.',
+  infoPhone:'Téléphone', infoHours:'Heures', infoAddr:'Adresse', hoursShort:'Lun–ven · 7 h 30 – 17 h',
+  fName:'Nom complet', fPhone:'Téléphone', fEmail:'Courriel', fMake:'Marque', fModel:'Modèle et année', fService:'Service requis',
+  fDate:'Date souhaitée', fMsg:'Décrivez le problème (facultatif)', fCourtesy:'J’aurai peut-être besoin d’une voiture de courtoisie (selon la disponibilité)',
+  fSubmit:'Demander un rendez-vous', fNote:'Diagnostic le jour même offert. Les demandes de fin de semaine sont confirmées le jour ouvrable suivant.',
+  phName:'Marie Tremblay', phEmail:'vous@exemple.com', phModel:'ex. Audi A4 2018', phMsg:'Bruits, voyants allumés, quand cela se produit…',
+  optSelect:'Choisir…', optOther:'Autre', svcOther:'Autre / je ne sais pas',
+  errReq:'Ce champ est obligatoire', errEmail:'Entrez un courriel valide', errPhone:'Entrez un numéro de téléphone valide', errDate:'Choisissez un jour de semaine à partir d’aujourd’hui',
+  ok:'Merci, {n} ! Votre demande pour « {s} » le {d} a bien été reçue. Nous vous contacterons dans un délai d’un jour ouvrable pour confirmer.',
+  contactEyebrow:'Venez nous voir', days:['Dimanche','Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi'], hrsOpen:'7 h 30 – 17 h', hrsClosed:'Fermé',
+  footTag:'Votre spécialiste en voitures importées depuis 1976',
+  videoTitle:'Rencontrez la famille derrière le garage', videoSub:'Young Street Garage · Depuis 1976', videoWatch:'Voir sur YouTube', videoPlay:'Lire la vidéo de Young Street Garage',
+  simEyebrow:'Simulateur interactif', simTitle:'Que fait vraiment une roue mal équilibrée ?',
+  simLead:'Déplacez les curseurs : quelques grammes de différence deviennent une force qui frappe votre suspension des centaines de fois par kilomètre.',
+  simSteerLbl:'Volant', simWheelLbl:'Roue avant', simTreadLbl:'Bande de roulement après 20 000 km',
+  simImb:'Déséquilibre', simSpeed:'Vitesse', simForce:'Force exercée sur la roue', simHits:'Impacts par seconde', simYearLbl:'Impacts sur 20 000 km',
+  simLevel:'Niveau de vibration', simLevels:['Parfaitement équilibrée','Légère','Perceptible','Forte','Sévère'],
+  simFx:['Micro-vibrations qui rendent les longs trajets plus fatigants','Volant qui tremble à vitesse d’autoroute','Usure irrégulière des pneus (en « cuvettes »)','Stress accru sur les roulements, amortisseurs et biellettes','Pneus et pièces de suspension à remplacer beaucoup plus tôt'],
+  simOk:['Conduite douce et silencieuse','Usure uniforme et pneus qui durent plus longtemps','Moins de stress sur la suspension et la direction'],
+  simFixBtn:'Équilibrer avec Road Force', simReset:'Réinitialiser', simMillion:'M',
+  simNote:'Modèle illustratif : force centrifuge F = m·r·ω² pour une masse sur la jante d’une roue de 16 po (rayon du pneu ≈ 32 cm). Les effets réels varient selon le véhicule, les pneus et la route.'
+}};
+
+let lang = 'en';
+const $ = (s, r=document) => r.querySelector(s);
+const $$ = (s, r=document) => [...r.querySelectorAll(s)];
+const svg = k => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${ICONS[k]}</svg>`;
+
+function render(){
+  const t = T[lang];
+  $('#svcGrid').innerHTML = SERVICES.map(k => `<article class="card"><span class="icon">${svg(k)}</span><h3>${t['s_'+k][0]}</h3><p>${t['s_'+k][1]}</p></article>`).join('');
+  $('#featList').innerHTML = FEATS.map(k => `<div class="feat-item"><span class="icon">${svg(k)}</span><div><h3>${t['f_'+k][0]}</h3><p>${t['f_'+k][1]}</p></div></div>`).join('');
+  const sel = $('#f-svc'), cur = sel.value;
+  sel.innerHTML = `<option value="">${t.optSelect}</option>` + SERVICES.map(k=>`<option value="${k}">${t['s_'+k][0]}</option>`).join('') + `<option value="other">${t.svcOther}</option>`;
+  sel.value = cur;
+  $$('[data-i18n]').forEach(el => { const v = t[el.dataset.i18n]; if (typeof v === 'string') el.textContent = v; });
+  $$('[data-i18n-html]').forEach(el => el.innerHTML = t[el.dataset.i18nHtml]);
+  $$('[data-i18n-placeholder]').forEach(el => el.placeholder = t[el.dataset.i18nPlaceholder]);
+  $$('[data-i18n-aria]').forEach(el => el.setAttribute('aria-label', t[el.dataset.i18nAria]));
+  const vf = $('#videoBox iframe'); if (vf) vf.title = t.videoTitle;
+  $$('.lang button').forEach(b => b.setAttribute('aria-pressed', b.dataset.lang === lang));
+  document.documentElement.lang = lang === 'fr' ? 'fr-CA' : 'en-CA';
+  document.title = lang === 'fr' ? 'Young Street Garage — Spécialiste en voitures importées' : 'Young Street Garage — Import Car Specialist';
+  updateStatus();
+  simUpdate();
+  $$('.field .err').forEach(e => e.textContent = '');
+  $$('.invalid').forEach(e => e.classList.remove('invalid'));
+  $('#formOk').classList.remove('show');
+}
+
+function setLang(l){ lang = l; try{ localStorage.setItem('ysg-lang', l); }catch(e){} render(); }
+
+// Ottawa time
+function ottawaNow(){
+  const p = Object.fromEntries(new Intl.DateTimeFormat('en-US',{timeZone:'America/Toronto',weekday:'short',hour:'numeric',minute:'numeric',hour12:false}).formatToParts(new Date()).map(x=>[x.type,x.value]));
+  const day = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'].indexOf(p.weekday);
+  return { day, mins: (+p.hour % 24) * 60 + +p.minute };
+}
+function updateStatus(){
+  const t = T[lang], {day, mins} = ottawaNow();
+  const weekday = day >= 1 && day <= 5;
+  const isOpen = weekday && mins >= 450 && mins < 1020;
+  const st = $('#status');
+  st.classList.toggle('open', isOpen);
+  let txt = t.open;
+  if (!isOpen){
+    let next, label;
+    if (weekday && mins < 450) label = t.today;
+    else { next = day; do { next = (next + 1) % 7; } while (next === 0 || next === 6);
+      label = (next === (day + 1) % 7) ? t.tomorrow : t.days[next].toLowerCase(); }
+    txt = t.closed.replace('{d}', label);
+  }
+  $('#statusText').textContent = txt;
+  $('#hoursTable').innerHTML = [1,2,3,4,5,6,0].map(d => `<tr class="${d===day?'today':''}"><td>${t.days[d]}</td><td>${d>=1&&d<=5?t.hrsOpen:t.hrsClosed}</td></tr>`).join('');
+}
+
+// Form
+const form = $('#bookForm');
+const todayISO = () => { const d = new Date(); d.setMinutes(d.getMinutes()-d.getTimezoneOffset()); return d.toISOString().slice(0,10); };
+$('#f-date').min = todayISO();
+function validate(){
+  const t = T[lang]; let ok = true;
+  const set = (id, msg) => { const el = $(id); el.classList.toggle('invalid', !!msg); el.parentElement.querySelector('.err').textContent = msg || ''; if (msg) ok = false; };
+  const v = id => $(id).value.trim();
+  set('#f-name', v('#f-name') ? '' : t.errReq);
+  set('#f-phone', !v('#f-phone') ? t.errReq : (v('#f-phone').replace(/\D/g,'').length < 10 ? t.errPhone : ''));
+  set('#f-email', !v('#f-email') ? t.errReq : (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v('#f-email')) ? '' : t.errEmail));
+  set('#f-make', v('#f-make') ? '' : t.errReq);
+  set('#f-svc', v('#f-svc') ? '' : t.errReq);
+  const d = v('#f-date'); let dErr = '';
+  if (!d) dErr = t.errReq; else { const wd = new Date(d+'T12:00').getDay(); if (d < todayISO() || wd === 0 || wd === 6) dErr = t.errDate; }
+  set('#f-date', dErr);
+  return ok;
+}
+form.addEventListener('submit', e => {
+  e.preventDefault();
+  if (!validate()){ const first = $('.invalid', form); first && first.focus(); return; }
+  const t = T[lang], sel = $('#f-svc');
+  const date = new Date($('#f-date').value+'T12:00').toLocaleDateString(lang==='fr'?'fr-CA':'en-CA',{weekday:'long',month:'long',day:'numeric'});
+  const ok = $('#formOk');
+  ok.textContent = t.ok.replace('{n}', $('#f-name').value.trim().split(' ')[0]).replace('{s}', sel.options[sel.selectedIndex].text).replace('{d}', date);
+  ok.classList.add('show');
+  form.reset(); $('#f-date').min = todayISO();
+});
+form.addEventListener('input', e => { if (e.target.classList.contains('invalid')) validate(); });
+
+// Video (lite embed: YouTube loads only on click)
+function playVideo(){
+  const box = $('#videoBox');
+  if (box.querySelector('iframe')) return;
+  const f = document.createElement('iframe');
+  f.src = 'https://www.youtube-nocookie.com/embed/g3S1-sj_RcE?autoplay=1&rel=0&hl=' + lang;
+  f.title = T[lang].videoTitle;
+  f.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+  f.referrerPolicy = 'strict-origin-when-cross-origin';
+  f.allowFullscreen = true;
+  box.innerHTML = ''; box.appendChild(f); f.focus();
+}
+$('#videoBtn').addEventListener('click', playVideo);
+$('#tlPlay').addEventListener('click', () => { $('#video').scrollIntoView({behavior:'smooth', block:'center'}); playVideo(); });
+
+// Balance simulator — F = m·r·ω² (weight on a 16" rim, tire radius 0.32 m)
+const SIM = { R_TIRE:0.32, R_WEIGHT:0.2, angle:0, kgf:0, kmh:100, running:false, last:0 };
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const simG = $('#simG'), simV = $('#simV');
+const fmt = (n, d=1) => n.toLocaleString(lang === 'fr' ? 'fr-CA' : 'en-CA', {maximumFractionDigits:d, minimumFractionDigits:d});
+
+function simLevel(kgf){ return kgf === 0 ? 0 : kgf < 1.5 ? 1 : kgf < 4 ? 2 : kgf < 9 ? 3 : 4; }
+
+function simUpdate(){
+  const t = T[lang], g = +simG.value, kmh = +simV.value;
+  const omega = (kmh / 3.6) / SIM.R_TIRE;                 // rad/s
+  const kgf = (g / 1000) * SIM.R_WEIGHT * omega * omega / 9.81;
+  const lvl = simLevel(kgf);
+  SIM.kgf = kgf; SIM.kmh = kmh;
+  $('#simGOut').textContent = g + ' g';
+  $('#simVOut').textContent = kmh + ' km/h';
+  $('#simF').textContent = fmt(kgf) + ' kg';
+  $('#simHz').textContent = fmt(omega / (2 * Math.PI));
+  const impacts = 20e6 / (2 * Math.PI * SIM.R_TIRE);
+  $('#simYear').textContent = g ? fmt(impacts / 1e6) + ' ' + t.simMillion : '0';
+  $('#simLvl').textContent = t.simLevels[lvl];
+  const pct = Math.min(100, kgf / 14 * 100);
+  const bar = $('#simBar');
+  bar.style.width = pct + '%';
+  bar.style.setProperty('--bw', pct ? (100 / pct * 100) + '%' : '100%');
+  $('#simEffects').innerHTML = lvl === 0
+    ? t.simOk.map(s => `<li class="ok">${s}</li>`).join('')
+    : t.simFx.map((s, i) => `<li class="${lvl >= [1,2,2,3,4][i] ? 'on' : ''}">${s}</li>`).join('');
+  // Cupped tread: scallop depth grows with the force
+  const cup = Math.min(16, kgf * 1.4), W = 220;
+  let d = `M0 70 L0 ${10 + cup * Math.abs(Math.sin(0))}`;
+  for (let x = 2; x <= W; x += 2) d += ` L${x} ${(10 + cup * Math.abs(Math.sin(Math.PI * x / 27.5))).toFixed(1)}`;
+  $('#simTread').setAttribute('d', d + ` L${W} 70 Z`);
+  if (reduceMotion) simDraw();
+}
+
+function simDraw(){
+  const amp = Math.min(14, SIM.kgf * 0.9), s = Math.sin(SIM.angle);
+  $('#simWheel').setAttribute('transform', `rotate(${(SIM.angle * 180 / Math.PI) % 360} 110 100)`);
+  $('#simHop').setAttribute('transform', `translate(0 ${reduceMotion ? 0 : (-Math.abs(s) * amp).toFixed(2)})`);
+  $('#simSteer').style.transform = reduceMotion ? '' : `rotate(${(s * Math.min(12, SIM.kgf * 0.8)).toFixed(2)}deg) translateY(${(s * amp * 0.25).toFixed(2)}px)`;
+}
+
+function simLoop(ts){
+  if (!SIM.running) return;
+  const dt = SIM.last ? Math.min(0.05, (ts - SIM.last) / 1000) : 0;
+  SIM.last = ts;
+  SIM.angle += 2 * Math.PI * Math.min(3, SIM.kmh / 45) * dt;   // visual speed (slowed so the eye can follow)
+  simDraw();
+  requestAnimationFrame(simLoop);
+}
+
+[simG, simV].forEach(el => el.addEventListener('input', simUpdate));
+$('#simReset').addEventListener('click', () => { simG.value = 30; simV.value = 100; simUpdate(); });
+$('#simFix').addEventListener('click', () => {
+  const step = () => { if (+simG.value > 0){ simG.value = +simG.value - 5; simUpdate(); setTimeout(step, 90); } };
+  step();
+});
+if (!reduceMotion && 'IntersectionObserver' in window){
+  new IntersectionObserver(([e]) => {
+    SIM.running = e.isIntersecting; SIM.last = 0;
+    if (SIM.running) requestAnimationFrame(simLoop);
+  }).observe($('#sim'));
+}
+
+// Language buttons
+$$('.lang button').forEach(b => b.addEventListener('click', () => setLang(b.dataset.lang)));
+
+// Mobile menu
+const burger = $('.burger'), mm = $('#mm');
+burger.addEventListener('click', () => { const o = mm.classList.toggle('open'); burger.setAttribute('aria-expanded', o); });
+$$('#mm a').forEach(a => a.addEventListener('click', () => { mm.classList.remove('open'); burger.setAttribute('aria-expanded', false); }));
+
+// Reveal on scroll
+if ('IntersectionObserver' in window){
+  const io = new IntersectionObserver(es => es.forEach(en => { if (en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); } }), {threshold:.12});
+  $$('.reveal').forEach(el => io.observe(el));
+} else $$('.reveal').forEach(el => el.classList.add('in'));
+
+$('#yr').textContent = new Date().getFullYear();
+
+// Initial language
+let saved = null; try{ saved = localStorage.getItem('ysg-lang'); }catch(e){}
+lang = saved || ((navigator.language||'').toLowerCase().startsWith('fr') ? 'fr' : 'en');
+render();
+setInterval(updateStatus, 60000);
+</script>
+</body>
+</html>
